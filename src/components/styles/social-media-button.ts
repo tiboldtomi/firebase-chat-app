@@ -3,6 +3,7 @@ import { theme } from '../../utils/theme';
 
 const SocialMediaButton = styled.button`
     all: unset;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
