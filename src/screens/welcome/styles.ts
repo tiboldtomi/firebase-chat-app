@@ -55,7 +55,7 @@ export const TitleIcon = styled.div`
 export const ControlsContainer = styled.div`
     width: 100%;
     height: 40vh;
-    padding: 1rem 2.5rem;
+    padding: 1vh 10vw;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

@@ -1,47 +1,37 @@
 import * as React from 'react';
+import { useAnimation } from './hooks';
+import { useHistory } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
 import { Button, SocialMediaButton } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGooglePlusG, faFacebookF, faAngellist } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle, faFacebookF, faAngellist, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { WelcomeContainer, WelcomeCircle, H1, ControlsContainer, P, SocialMediaContainer, TitleContainer, TitleIcon } from './styles';
 
 interface IWelcomeProps { }
 
 const Welcome: React.FC<IWelcomeProps> = () => {
+    const history = useHistory();
 
-    const { top } = useSpring({
-        top: '5%',
-        from: { top: '-50%' },
-    });
+    const {
+        titleIconScale,
+        defaultButtonTransform,
+        primaryButtonTransform,
+        socialMediaContainerTransform,
+    } = useAnimation();
 
-    const { transform: defaultButtonTransform } = useSpring({
-        transform: 'translate3d(0px, 0px, 0px)',
-        from: { transform: 'translate3d(0px,600px, 0px)' },
-        delay: 250,
-    });
+    const [{ top, opacity }, set] = useSpring(() => ({ top: '-65%', opacity: 1 }));
+    set({ top: '5%' });
 
-    const { transform: primaryButtonTransform } = useSpring({
-        transform: 'translate3d(0px, 0px, 0px)',
-        from: { transform: 'translate3d(0px,600px, 0px)' },
-        delay: 400,
-    });
-
-    const { transform: socialMediaContainerTransform } = useSpring({
-        transform: 'translate3d(0px, 0px, 0px)',
-        from: { transform: 'translate3d(0px,600px, 0px)' },
-        delay: 550,
-    });
-
-    const { transform: titleIconScale } = useSpring({
-        transform: 'scale(1)',
-        from: { transform: 'scale(0)' },
-        delay: 950,
-    })
+    const moveTo = (path: string) => {
+        set({ top: '-65%', opacity: 0 });
+        setTimeout(() => history.push(path), 350);
+    };
 
     const AP = animated(P);
     const AButton = animated(Button);
     const ATitleIcon = animated(TitleIcon);
     const AWelcomeCircle = animated(WelcomeCircle);
+    const AControlsContainer = animated(ControlsContainer);
     const ASocialMediaContainer = animated(SocialMediaContainer);
 
     return (
@@ -54,11 +44,11 @@ const Welcome: React.FC<IWelcomeProps> = () => {
                     </ATitleIcon>
                 </TitleContainer>
             </AWelcomeCircle>
-            <ControlsContainer>
-                <AButton variant={'default'} style={{ transform: defaultButtonTransform }}>
+            <AControlsContainer style={{ opacity }}>
+                <AButton variant={'default'} style={{ transform: defaultButtonTransform }} onClick={() => moveTo('/login')}>
                     {'Login'}
                 </AButton>
-                <AButton variant={'primary'} style={{ transform: primaryButtonTransform }}>
+                <AButton variant={'primary'} style={{ transform: primaryButtonTransform }} onClick={() => moveTo('/register')}>
                     {'Create account'}
                 </AButton>
                 <AP style={{ transform: socialMediaContainerTransform }}>{'or login using social media'}</AP>
@@ -67,10 +57,13 @@ const Welcome: React.FC<IWelcomeProps> = () => {
                         <FontAwesomeIcon icon={faFacebookF} size={'2x'} />
                     </SocialMediaButton>
                     <SocialMediaButton onClick={() => console.log('google plus onclick')}>
-                        <FontAwesomeIcon icon={faGooglePlusG} size={'2x'} />
+                        <FontAwesomeIcon icon={faGoogle} size={'2x'} />
+                    </SocialMediaButton>
+                    <SocialMediaButton onClick={() => console.log('github login onclick')}>
+                        <FontAwesomeIcon icon={faGithub} size={'2x'} />
                     </SocialMediaButton>
                 </ASocialMediaContainer>
-            </ControlsContainer>
+            </AControlsContainer>
         </WelcomeContainer>
     );
 }

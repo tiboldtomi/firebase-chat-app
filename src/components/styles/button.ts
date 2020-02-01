@@ -7,6 +7,7 @@ interface IButtonProps {
 
 const Button = styled.button<IButtonProps>`
     all: unset;
+    box-sizing: border-box;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -18,6 +19,7 @@ const Button = styled.button<IButtonProps>`
     text-transform: uppercase;
     margin-bottom: .7rem;
     font-weight: 700;
+    box-shadow: ${({variant}) => variant === 'default' ? 'none' : '4px 4px 20px rgba(0,0,0,0.6)'}
 `;
 
 export default Button;
