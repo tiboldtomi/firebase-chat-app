@@ -7,7 +7,7 @@ const initialState: INotification = {
     message: null,
 };
 
-const NotificationStoreContext = React.createContext<INotificationContext>({ notification: initialState });
+const NotificationStoreContext = React.createContext<INotificationContext>({ notification: initialState, dispatchNotification: () => { } });
 
 export const NotificationStoreProvider: React.FC<{}> = ({ children }) => {
     const [notification, dispatchNotification] = React.useReducer(notificationReducer, initialState);

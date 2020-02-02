@@ -1,5 +1,5 @@
+import { theme } from '../../utils';
 import styled from 'styled-components';
-import { theme } from '../../utils/theme';
 
 export const WelcomeContainer = styled.div`
     width: 100%;
@@ -25,7 +25,7 @@ export const WelcomeCircle = styled.div`
 
 export const H1 = styled.h1`
     font-size: 2.3rem;
-    color: ${theme.fontColor};
+    color: ${theme.defaultFontColor};
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -49,7 +49,7 @@ export const TitleIcon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${theme.fontColor}
+    color: ${theme.defaultFontColor}
 `;
 
 export const ControlsContainer = styled.div`
@@ -66,7 +66,7 @@ export const P = styled.p`
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    color: ${theme.fontColor};
+    color: ${theme.defaultFontColor};
     margin: 1.5rem 0;
     letter-spacing: 1px;
     text-align: center;

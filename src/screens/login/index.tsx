@@ -14,11 +14,11 @@ import { NotificationActions } from '../../stores/notification/notification.acti
 
 const validationSchema = yup.object().shape({
     email: yup.string()
-        .email('Email is not valid!')
-        .required('Every field is required!'),
+        .required('Every field is required!')
+        .email('Email is not valid!'),
     password: yup.string()
-        .min(6, 'Password must be at least 6 characters')
-        .required('Every field is required!'),
+        .required('Every field is required!')
+        .min(6, 'Password must be at least 6 characters!'),
 });
 
 interface IFormValues {
@@ -47,18 +47,31 @@ const Login: React.FC<ILoginProps> = () => {
             password: '',
         },
         onSubmit: ({ email, password }) => {
-            if (dispatchNotification) {
-                dispatchNotification({
-                    type: NotificationActions.ADD,
-                    payload: {
-                        type: NotificationType.Success,
-                        message: 'Na működik vajon?',
-                    }
-                });
-            }
+            dispatchNotification({
+                type: NotificationActions.ADD,
+                payload: {
+                    type: NotificationType.Success,
+                    message: 'Form submitted!! :)',
+                }
+            });
+            console.log('%c Submitted!', 'color: green');
+            formController.resetForm();
         },
         validationSchema,
     });
+
+    React.useEffect(() => {
+        if (!formController.isSubmitting && !formController.isValid) {
+            dispatchNotification({
+                type: NotificationActions.ADD,
+                payload: {
+                    type: NotificationType.Danger,
+                    message: (formController.errors.email || formController.errors.password) as string,
+                }
+            });
+        }
+        // eslint-disable-next-line
+    }, [formController.isSubmitting]);
 
     const AP = animated(P);
     const AH1 = animated(H1);

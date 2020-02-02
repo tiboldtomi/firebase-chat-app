@@ -1,5 +1,5 @@
+import { theme } from '../../utils';
 import styled from 'styled-components';
-import { theme } from '../../utils/theme';
 
 export const LoginContainer = styled.div`
     position: relative;
@@ -14,7 +14,7 @@ export const LoginContainer = styled.div`
 
 export const H1 = styled.h1`
     font-size: 1.6rem;
-    color: ${theme.fontColor};
+    color: ${theme.defaultFontColor};
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;

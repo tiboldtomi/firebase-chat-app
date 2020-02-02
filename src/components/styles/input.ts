@@ -1,6 +1,6 @@
+import { theme } from '../../utils';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
-import { theme } from '../../utils/theme';
 
 export interface IInputProps {
     isValid?: boolean;
@@ -16,7 +16,7 @@ const Input = styled.input<IInputProps>`
     padding-right: ${({ type }) => type === 'password' ? '3rem' : '1rem'};
     width: 100%;
     height: 3rem;
-    color: ${theme.fontColor};
+    color: ${theme.defaultFontColor};
     margin-bottom: .7rem;
     background-color: ${theme.defaultColor};
     border: 1px solid;
@@ -24,7 +24,7 @@ const Input = styled.input<IInputProps>`
     
     ::placeholder {
         text-transform: uppercase;
-        color: ${theme.fontColor};
+        color: ${theme.defaultFontColor};
         letter-spacing: 1px;
     }
 `;

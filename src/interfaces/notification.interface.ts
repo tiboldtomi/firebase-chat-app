@@ -15,5 +15,5 @@ export interface INotification {
 
 export interface INotificationContext {
     notification: INotification;
-    dispatchNotification?: React.Dispatch<IAction<NotificationActions, INotification>>;
+    dispatchNotification: React.Dispatch<IAction<NotificationActions, INotification | undefined>>;
 }

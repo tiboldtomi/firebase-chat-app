@@ -1,5 +1,5 @@
+import { theme } from '../../utils';
 import styled from 'styled-components';
-import { theme } from '../../utils/theme';
 
 export const PasswordInputContainer = styled.div`
     position: relative;
@@ -13,7 +13,7 @@ export const EyeIconContainer = styled.div`
     width: 3rem;
     top: 0;
     right: 0;
-    color: ${theme.fontColor};
+    color: ${theme.defaultFontColor};
     display: flex;
     align-items: center;
     justify-content: center;

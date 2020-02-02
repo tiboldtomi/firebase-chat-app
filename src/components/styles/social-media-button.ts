@@ -1,5 +1,5 @@
+import { theme } from '../../utils';
 import styled from 'styled-components';
-import { theme } from '../../utils/theme';
 
 const SocialMediaButton = styled.button`
     all: unset;
@@ -9,10 +9,10 @@ const SocialMediaButton = styled.button`
     justify-content: center;
     width: 3rem;
     height: 3rem;
-    border: 3px solid ${theme.fontColor};
+    border: 3px solid ${theme.defaultFontColor};
     border-radius: 50%;
     background: transparent;
-    color: ${theme.fontColor};
+    color: ${theme.defaultFontColor};
     margin: 0 .75rem;
 `;
 
