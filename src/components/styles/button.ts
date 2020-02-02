@@ -15,7 +15,7 @@ const Button = styled.button<IButtonProps>`
     align-items: center;
     width: 100%;
     height: 3rem;
-    background-color: ${({ variant }) => variant === 'default' ? 'rgba(255,255,255,0.15)' : theme.primaryColor};
+    background-color: ${({ variant }) => variant === 'default' ? theme.defaultColor : theme.primaryColor};
     color: ${theme.fontColor};
     text-transform: uppercase;
     margin-bottom: .7rem;
