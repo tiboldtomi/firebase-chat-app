@@ -19,18 +19,15 @@ const Register: React.FC<IRegisterProps> = () => {
     } = useAnimation();
 
     const AH1 = animated(H1);
-    const AInput = animated(Input);
-    const AButton = animated(Button);
-    const APasswordInput = animated(PasswordInput);
 
     return (
         <RegisterContainer>
             <AH1 style={{ opacity: titleAnimation }}>{'Register now'}</AH1>
-            <AInput style={{ transform: usernameFieldAnimation }} name={'username'} placeholder={'username'} />
-            <AInput style={{ transform: emailFieldAnimation }} name={'email'} placeholder={'email'} />
-            <APasswordInput style={{ transform: pwFieldAnimation }} name={'password'} placeholder={'password'} />
-            <APasswordInput style={{ transform: confirmPWFieldAnimation }} name={'confirmPassword'} placeholder={'confirm password'} />
-            <AButton style={{ transform: registerButtonAnimation }} variant={'primary'}>{'register'}</AButton>
+            <Input style={{ transform: usernameFieldAnimation }} name={'username'} placeholder={'username'} />
+            <Input style={{ transform: emailFieldAnimation }} name={'email'} placeholder={'email'} />
+            <PasswordInput style={{ transform: pwFieldAnimation }} name={'password'} placeholder={'password'} />
+            <PasswordInput style={{ transform: confirmPWFieldAnimation }} name={'confirmPassword'} placeholder={'confirm password'} />
+            <Button style={{ transform: registerButtonAnimation }} variant={'primary'}>{'register'}</Button>
         </RegisterContainer>
     );
 }

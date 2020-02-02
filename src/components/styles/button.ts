@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 import { theme } from '../../utils/theme';
 
 interface IButtonProps {
@@ -19,7 +20,7 @@ const Button = styled.button<IButtonProps>`
     text-transform: uppercase;
     margin-bottom: .7rem;
     font-weight: 700;
-    box-shadow: ${({variant}) => variant === 'default' ? 'none' : '4px 4px 20px rgba(0,0,0,0.6)'}
+    box-shadow: ${({ variant }) => variant === 'default' ? 'none' : '4px 4px 20px rgba(0,0,0,0.6)'}
 `;
 
-export default Button;
+export default animated(Button);

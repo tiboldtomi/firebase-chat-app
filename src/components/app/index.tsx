@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { AuthenticatedRoute } from '../';
+import { useNotificationStore } from '../../stores';
 import { AppContainer, Circle, InnerCircle } from './styles';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Login, Home, Register, Welcome } from '../../screens';
@@ -7,6 +8,10 @@ import { Login, Home, Register, Welcome } from '../../screens';
 interface IAppProps { }
 
 const App: React.FC<IAppProps> = () => {
+
+    const { notification } = useNotificationStore();
+
+    console.log('notification in app: ', notification);
 
     return (
         <AppContainer>

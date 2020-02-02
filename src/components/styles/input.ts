@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 import { theme } from '../../utils/theme';
 
 export interface IInputProps {
@@ -28,4 +29,4 @@ const Input = styled.input<IInputProps>`
     }
 `;
 
-export default Input;
+export default animated(Input);

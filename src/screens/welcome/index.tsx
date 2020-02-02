@@ -24,11 +24,10 @@ const Welcome: React.FC<IWelcomeProps> = () => {
 
     const moveTo = (path: string) => {
         set({ top: '-65%', opacity: 0 });
-        setTimeout(() => history.push(path), 350);
+        setTimeout(() => history.push(path), 400);
     };
 
     const AP = animated(P);
-    const AButton = animated(Button);
     const ATitleIcon = animated(TitleIcon);
     const AWelcomeCircle = animated(WelcomeCircle);
     const AControlsContainer = animated(ControlsContainer);
@@ -45,12 +44,12 @@ const Welcome: React.FC<IWelcomeProps> = () => {
                 </TitleContainer>
             </AWelcomeCircle>
             <AControlsContainer style={{ opacity }}>
-                <AButton variant={'default'} style={{ transform: defaultButtonTransform }} onClick={() => moveTo('/login')}>
+                <Button variant={'default'} style={{ transform: defaultButtonTransform }} onClick={() => moveTo('/login')}>
                     {'Login'}
-                </AButton>
-                <AButton variant={'primary'} style={{ transform: primaryButtonTransform }} onClick={() => moveTo('/register')}>
+                </Button>
+                <Button variant={'primary'} style={{ transform: primaryButtonTransform }} onClick={() => moveTo('/register')}>
                     {'Create account'}
-                </AButton>
+                </Button>
                 <AP style={{ transform: socialMediaContainerTransform }}>{'or login using social media'}</AP>
                 <ASocialMediaContainer style={{ transform: socialMediaContainerTransform }}>
                     <SocialMediaButton onClick={() => console.log('facebook onclick')}>
