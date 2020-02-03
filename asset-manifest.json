@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/firebase-chat-app/static/css/main.111c6ae1.chunk.css",
-    "main.js": "/firebase-chat-app/static/js/main.bba2011f.chunk.js",
-    "main.js.map": "/firebase-chat-app/static/js/main.bba2011f.chunk.js.map",
+    "main.js": "/firebase-chat-app/static/js/main.7cb998ec.chunk.js",
+    "main.js.map": "/firebase-chat-app/static/js/main.7cb998ec.chunk.js.map",
     "runtime-main.js": "/firebase-chat-app/static/js/runtime-main.13579eb3.js",
     "runtime-main.js.map": "/firebase-chat-app/static/js/runtime-main.13579eb3.js.map",
     "static/js/2.3a00224a.chunk.js": "/firebase-chat-app/static/js/2.3a00224a.chunk.js",
     "static/js/2.3a00224a.chunk.js.map": "/firebase-chat-app/static/js/2.3a00224a.chunk.js.map",
     "index.html": "/firebase-chat-app/index.html",
-    "precache-manifest.57babdf82857a064beb9a09bd79295cc.js": "/firebase-chat-app/precache-manifest.57babdf82857a064beb9a09bd79295cc.js",
+    "precache-manifest.ae9cc0d081af9fe0ec876021b7c19d45.js": "/firebase-chat-app/precache-manifest.ae9cc0d081af9fe0ec876021b7c19d45.js",
     "service-worker.js": "/firebase-chat-app/service-worker.js",
     "static/css/main.111c6ae1.chunk.css.map": "/firebase-chat-app/static/css/main.111c6ae1.chunk.css.map",
     "static/js/2.3a00224a.chunk.js.LICENSE.txt": "/firebase-chat-app/static/js/2.3a00224a.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.13579eb3.js",
     "static/js/2.3a00224a.chunk.js",
     "static/css/main.111c6ae1.chunk.css",
-    "static/js/main.bba2011f.chunk.js"
+    "static/js/main.7cb998ec.chunk.js"
   ]
 }
