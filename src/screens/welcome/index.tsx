@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { theme } from '../../utils';
 import { useAnimation } from './hooks';
 import { useHistory } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
@@ -12,6 +13,8 @@ interface IWelcomeProps { }
 const Welcome: React.FC<IWelcomeProps> = () => {
     const history = useHistory();
 
+    const { vh, vw } = theme;
+
     const {
         titleIconScale,
         defaultButtonTransform,
@@ -19,11 +22,11 @@ const Welcome: React.FC<IWelcomeProps> = () => {
         socialMediaContainerTransform,
     } = useAnimation();
 
-    const [{ top, opacity }, set] = useSpring(() => ({ top: '-65%', opacity: 1 }));
-    set({ top: '5%' });
+    const [{ transform, opacity }, set] = useSpring(() => ({ transform: `translate3d(0,${vw > vh ? '-150vw' : '-150vh'},0)`, opacity: 1 }));
+    set({ transform: `translate3d(0,${vw > vh ? '-75vw' : '-50vh'},0)` });
 
     const moveTo = (path: string) => {
-        set({ top: '-65%', opacity: 0 });
+        set({ transform: `translate3d(0,${vw > vh ? '-120vw' : '-120vh'},0)`, opacity: 0 });
         setTimeout(() => history.push(path), 400);
     };
 
@@ -35,7 +38,7 @@ const Welcome: React.FC<IWelcomeProps> = () => {
 
     return (
         <WelcomeContainer>
-            <AWelcomeCircle style={{ top }}>
+            <AWelcomeCircle style={{ transform }}>
                 <TitleContainer>
                     <H1>{'Welcome'}</H1>
                     <ATitleIcon style={{ transform: titleIconScale }}>

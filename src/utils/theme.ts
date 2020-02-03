@@ -1,4 +1,7 @@
 const theme = {
+    vw: document.documentElement.clientWidth,
+    vh: document.documentElement.clientHeight,
+
     fontSize: '16px',
     defaultFontColor: '#fff',
     primaryFontColor: '#b36162',

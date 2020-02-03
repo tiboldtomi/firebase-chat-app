@@ -2,41 +2,40 @@ import { theme } from '../../utils';
 import styled from 'styled-components';
 
 export const WelcomeContainer = styled.div`
+    position: relative;
     width: 100%;
     height: 100%;
-    position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     justify-content: flex-end;
 `;
 
 export const WelcomeCircle = styled.div`
     position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    width: 100vh;
-    height: 100vh;
+    top: 0;
+    width: ${theme.vw > theme.vh ? '100vw' : '100vh'};
+    height: ${theme.vw > theme.vh ? '100vw' : '100vh'};
+    padding-bottom: 8vh;
     border-radius: 50%;
     box-shadow: inset -1px -1px 10px rgba(0,0,0,0.6), 5px 5px 25px rgba(0,0,0,0.6), -5px -5px 25px rgba(0,0,0,0.6);
     background-color: ${theme.primaryColor};
     background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0));
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 `;
 
 export const H1 = styled.h1`
-    font-size: 2.3rem;
+    font-size: 2.5rem;
     color: ${theme.defaultFontColor};
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 1rem;
+    margin-bottom: 2.5vh;
 `;
 
 export const TitleContainer = styled.div`
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -44,8 +43,8 @@ export const TitleContainer = styled.div`
 `;
 
 export const TitleIcon = styled.div`
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,11 +53,9 @@ export const TitleIcon = styled.div`
 
 export const ControlsContainer = styled.div`
     width: 100%;
-    height: 40vh;
-    padding: 1vh 10vw;
+    padding: 0 10vw 10vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
 `;
 

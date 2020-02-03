@@ -14,11 +14,11 @@ const Button = styled.button<IButtonProps>`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 3rem;
+    height: 5.5vh;
     background-color: ${({ variant }) => variant === 'default' ? theme.defaultColor : theme.primaryColor};
     color: ${theme.defaultFontColor};
     text-transform: uppercase;
-    margin-bottom: .7rem;
+    margin-bottom: 1.2vh;
     font-weight: 700;
     box-shadow: ${({ variant }) => variant === 'default' ? 'none' : '4px 4px 20px rgba(0,0,0,0.6)'}
 `;
