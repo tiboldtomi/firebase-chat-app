@@ -1,13 +1,15 @@
 import * as yup from 'yup';
+import { uuid } from 'uuidv4';
 import * as React from 'react';
 import { useFormik } from 'formik';
 import { useAnimation } from './hooks';
 import { animated } from 'react-spring';
-import { LoginContainer, H1, SubTitle } from './styles';
 import { SocialMediaContainer, P } from '../welcome/styles';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { useNotificationStore } from '../../stores/notification';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NotificationType } from '../../interfaces/notification.interface';
+import { LoginContainer, H1, SubTitle, TitleIcon, TitleContainer } from './styles';
 import { Button, Input, SocialMediaButton, PasswordInput } from '../../components';
 import { faGoogle, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { NotificationActions } from '../../stores/notification/notification.actions';
@@ -36,6 +38,7 @@ const Login: React.FC<ILoginProps> = () => {
         titleAnimation,
         pwFieldAnimation,
         subTitleAnimation,
+        titleIconAnimation,
         emailFieldAnimation,
         socialMediaAnimation,
         loginButtonAnimation,
@@ -50,6 +53,8 @@ const Login: React.FC<ILoginProps> = () => {
             dispatchNotification({
                 type: NotificationActions.ADD,
                 payload: {
+                    id: uuid(),
+                    timeStamp: Date.now(),
                     type: NotificationType.Success,
                     message: 'Form submitted!! :)',
                 }
@@ -65,6 +70,8 @@ const Login: React.FC<ILoginProps> = () => {
             dispatchNotification({
                 type: NotificationActions.ADD,
                 payload: {
+                    id: uuid(),
+                    timeStamp: Date.now(),
                     type: NotificationType.Danger,
                     message: (formController.errors.email || formController.errors.password) as string,
                 }
@@ -76,13 +83,17 @@ const Login: React.FC<ILoginProps> = () => {
     const AP = animated(P);
     const AH1 = animated(H1);
     const ASubTitle = animated(SubTitle);
+    const ATitleIcon = animated(TitleIcon);
     const ASocialMediaContainer = animated(SocialMediaContainer);
-
-    console.log('formController: ', formController);
 
     return (
         <LoginContainer>
-            <AH1 style={{ opacity: titleAnimation }}>{'welcome back'}</AH1>
+            <TitleContainer>
+                <AH1 style={{ opacity: titleAnimation }}>{'welcome back'}</AH1>
+                <ATitleIcon style={{ transform: titleIconAnimation }}>
+                    <FontAwesomeIcon icon={faSignInAlt} style={{ width: '100%', height: '100%' }} />
+                </ATitleIcon>
+            </TitleContainer>
             <ASubTitle style={{ transform: subTitleAnimation }}>{'login in'}</ASubTitle>
             <Input
                 name={'email'}

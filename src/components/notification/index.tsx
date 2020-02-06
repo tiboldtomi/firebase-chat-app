@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useSpring, config } from 'react-spring';
 import { useNotificationStore } from '../../stores';
+import { config, useTransition } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NotificationType } from '../../interfaces/notification.interface';
 import { faCheck, faInfo, faExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -11,43 +11,51 @@ interface INotificationProps { }
 
 const Notification: React.FC<INotificationProps> = () => {
 
-    const { notification, dispatchNotification } = useNotificationStore();
+    const { notifications, dispatchNotification } = useNotificationStore();
 
-    const [{ transform, opacity }, set] = useSpring(() => ({
-        transform: 'translate(-50%, -150px)',
-        opacity: 0,
-        config: { ...config.default, friction: 16 }
-    }));
+    const notificationAnimations = useTransition(
+        notifications.map((n, index) => ({ ...n, y: index * 4 })),
+        n => n.id,
+        {
+            from: { opacity: 0, transform: `translate(-50%, -4rem)` },
+            leave: { opacity: 0 },
+            enter: ({ y }) => ({ opacity: 1, transform: `translate(-50%, ${y}rem)` }),
+            update: ({ y }) => ({ opacity: 1, transform: `translate(-50%, ${y}rem)` }),
+            config: { ...config.default, friction: 16 }
+        }
+    );
 
     React.useEffect(() => {
-        if (notification.message !== null) {
-            set({ opacity: 1, transform: 'translate(-50%, 0px)' });
-            setTimeout(() => set({ opacity: 0, transform: 'translate(-50%, -150px)' }), 3200);
-            setTimeout(() => dispatchNotification({ type: NotificationActions.RESET, payload: undefined }), 4000);
+        if (notifications.length > 0) {
+            setTimeout(() => dispatchNotification({ type: NotificationActions.DELETE, payload: notifications[0] }), 4000);
         }
         // eslint-disable-next-line
-    }, [notification]);
+    }, [notifications]);
 
 
-    if (!!notification.message) {
-        return (
-            <ANotificationContainer type={notification.type} style={{ transform, opacity }}>
-                <AIconContainer type={notification.type}>
-                    <FontAwesomeIcon
-                        icon={
-                            notification.type === NotificationType.Danger
-                                ? faExclamation
-                                : notification.type === NotificationType.Warning
-                                    ? faInfo
-                                    : faCheck
-                        }
-                    />
-                </AIconContainer>
-                <NotificationText strLenght={notification.message.length}>{notification.message}</NotificationText>
-            </ANotificationContainer>
-        );
-    }
-    return <></>;
+    return (
+        <>
+            {notificationAnimations.map(({ item: notification, props }) => {
+                const { opacity, transform } = props;
+                return (
+                    <ANotificationContainer key={notification.id} type={notification.type} style={{ transform, opacity }}>
+                        <AIconContainer type={notification.type}>
+                            <FontAwesomeIcon
+                                icon={
+                                    notification.type === NotificationType.Danger
+                                        ? faExclamation
+                                        : notification.type === NotificationType.Warning
+                                            ? faInfo
+                                            : faCheck
+                                }
+                            />
+                        </AIconContainer>
+                        <NotificationText strLenght={notification.message.length}>{notification.message}</NotificationText>
+                    </ANotificationContainer>
+                );
+            })}
+        </>
+    );
 }
 
 export default Notification;

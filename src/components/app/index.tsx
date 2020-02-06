@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { AuthenticatedRoute, Notification } from '../';
-import { AppContainer, Circle, InnerCircle } from './styles';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Login, Home, Register, Welcome } from '../../screens';
+import { AuthenticatedRoute, Notification, LoaderBanner } from '../';
+import { AppContainer, BottomCircle, InnerCircle, TopCircle } from './styles';
 
 interface IAppProps { }
 
@@ -10,10 +10,14 @@ const App: React.FC<IAppProps> = () => {
 
     return (
         <AppContainer>
+            {/* <LoaderBanner /> */}
             <Notification />
-            <Circle>
+            <TopCircle>
                 <InnerCircle />
-            </Circle>
+            </TopCircle>
+            <BottomCircle>
+                <InnerCircle />
+            </BottomCircle>
             <HashRouter basename="/">
                 <Switch>
                     <Route exact={true} path={'/login'} render={() => <Login />} />

@@ -3,9 +3,10 @@ import { theme } from '../../utils';
 import { useAnimation } from './hooks';
 import { useHistory } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
+import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { Button, SocialMediaButton } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGoogle, faFacebookF, faAngellist, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faGoogle, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { WelcomeContainer, WelcomeCircle, H1, ControlsContainer, P, SocialMediaContainer, TitleContainer, TitleIcon } from './styles';
 
 interface IWelcomeProps { }
@@ -40,9 +41,9 @@ const Welcome: React.FC<IWelcomeProps> = () => {
         <WelcomeContainer>
             <AWelcomeCircle style={{ transform }}>
                 <TitleContainer>
-                    <H1>{'Welcome'}</H1>
+                    <H1>{'HOMiESCUP'}</H1>
                     <ATitleIcon style={{ transform: titleIconScale }}>
-                        <FontAwesomeIcon icon={faAngellist} style={{ width: '100%', height: '100%' }} />
+                        <FontAwesomeIcon icon={faTrophy} style={{ width: '100%', height: '100%' }} />
                     </ATitleIcon>
                 </TitleContainer>
             </AWelcomeCircle>

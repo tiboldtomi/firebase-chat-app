@@ -4,12 +4,12 @@ const theme = {
 
     fontSize: '16px',
     defaultFontColor: '#fff',
-    primaryFontColor: '#b36162',
+    primaryFontColor: '#0e9aa7',
     successFontColor: '#155724',
     dangerFontColor: '#721c24',
     warningFontColor: '#856404',
 
-    primaryColor: '#A7696A',
+    primaryColor: '#3da4ab',
     defaultColor: 'rgba(255,255,255,0.15)',
     dark: 'rgba(48,48,48,1)',
     dark06: 'rgba(48,48,48,0.6)',

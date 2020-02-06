@@ -12,6 +12,13 @@ export const LoginContainer = styled.div`
     justify-content: flex-start;
 `;
 
+export const TitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15vh;
+`;
+
 export const H1 = styled.h1`
     font-size: 1.6rem;
     color: ${theme.defaultFontColor};
@@ -20,7 +27,14 @@ export const H1 = styled.h1`
     letter-spacing: 1px;
     margin-bottom: 1rem;
     font-weight: 600;
-    margin-bottom: 25vh;
+`;
+
+export const TitleIcon = styled.div`
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${theme.defaultFontColor};
 `;
 
 export const SubTitle = styled.h2`

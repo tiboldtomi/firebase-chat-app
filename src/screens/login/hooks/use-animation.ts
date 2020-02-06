@@ -31,11 +31,17 @@ const useAnimation = () => {
         from: { transform: 'translate3d(0px, 600px, 0px)' },
         delay: 500
     });
+    const { transform: titleIconAnimation } = useSpring({
+        transform: 'scale(1)',
+        from: { transform: 'scale(0)' },
+        delay: 600,
+    });
 
     return {
         titleAnimation,
         pwFieldAnimation,
         subTitleAnimation,
+        titleIconAnimation,
         emailFieldAnimation,
         loginButtonAnimation,
         socialMediaAnimation,

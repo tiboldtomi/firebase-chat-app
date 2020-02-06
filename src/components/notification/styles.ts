@@ -10,10 +10,10 @@ interface INotificationContainerProps {
 const NotificationContainer = styled.div<INotificationContainerProps>`
     position: absolute;
     z-index: 100;
-    top: 1vh;
+    top: .5rem;
     left: 50%;
     width: 94vw;
-    height: 7vh;
+    height: 3.5rem;
     background: ${({ type }) => type === NotificationType.Danger
         ? theme.dangerBackgroundColor
         : type === NotificationType.Success
@@ -38,7 +38,6 @@ const NotificationContainer = styled.div<INotificationContainerProps>`
 
 const NotificationText = styled.p<{ strLenght: number }>`
     font-size: ${({ strLenght }) => strLenght > 25 ? '.8rem' : '1rem'};
-    padding: 0 .5rem;
     font-weight: 400;
 `;
 
@@ -61,7 +60,7 @@ const IconContainer = styled.div<INotificationContainerProps>`
         : type === NotificationType.Success
             ? theme.successFontColor
             : theme.warningFontColor};
-    margin-left: .5rem;
+    margin: 0 .6rem 0 1rem;
 `;
 
 const AIconContainer = animated(IconContainer);

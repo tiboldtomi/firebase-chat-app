@@ -16,7 +16,7 @@ export const WelcomeCircle = styled.div`
     top: 0;
     width: ${theme.vw > theme.vh ? '100vw' : '100vh'};
     height: ${theme.vw > theme.vh ? '100vw' : '100vh'};
-    padding-bottom: 8vh;
+    padding-bottom: 5%;
     border-radius: 50%;
     box-shadow: inset -1px -1px 10px rgba(0,0,0,0.6), 5px 5px 25px rgba(0,0,0,0.6), -5px -5px 25px rgba(0,0,0,0.6);
     background-color: ${theme.primaryColor};
@@ -24,15 +24,22 @@ export const WelcomeCircle = styled.div`
     display: flex;
     align-items: flex-end;
     justify-content: center;
+
+    @media (max-width: 700px) {
+        padding-bottom: 20%;
+    }
 `;
 
 export const H1 = styled.h1`
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     color: ${theme.defaultFontColor};
     text-align: center;
-    text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 2.5vh;
+
+    @media (max-width: 700px) {
+        font-size: 2.5rem;
+    }
 `;
 
 export const TitleContainer = styled.div`
@@ -43,12 +50,15 @@ export const TitleContainer = styled.div`
 `;
 
 export const TitleIcon = styled.div`
-    width: 4.5rem;
-    height: 4.5rem;
+    height: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${theme.defaultFontColor}
+    color: ${theme.defaultFontColor};
+
+    @media (max-width: 700px) {
+        height: 5rem;
+    }
 `;
 
 export const ControlsContainer = styled.div`

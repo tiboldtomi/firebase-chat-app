@@ -9,11 +9,13 @@ export enum NotificationType {
 }
 
 export interface INotification {
-    type: NotificationType | null;
-    message: string | null;
+    id: string;
+    message: string;
+    timeStamp: number;
+    type: NotificationType;
 }
 
 export interface INotificationContext {
-    notification: INotification;
+    notifications: INotification[];
     dispatchNotification: React.Dispatch<IAction<NotificationActions, INotification | undefined>>;
 }
