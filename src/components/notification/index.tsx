@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { usePrevious } from '../../utils';
 import { useNotificationStore } from '../../stores';
 import { config, useTransition } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,6 +8,8 @@ import { NotificationActions } from '../../stores/notification/notification.acti
 import { faCheck, faInfo, faExclamation, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ANotificationContainer, NotificationText, AIconContainer, DeleteIconContainer } from './styles';
 
+const NOTIFICATIONS_MAX_COUNT: number = 4;
+
 interface INotificationProps { }
 
 const Notification: React.FC<INotificationProps> = () => {
@@ -14,7 +17,7 @@ const Notification: React.FC<INotificationProps> = () => {
     const { notifications, dispatchNotification } = useNotificationStore();
 
     const notificationAnimations = useTransition(
-        notifications.map((n, index) => ({ ...n, y: index * 4 })),
+        (notifications.map((n, index) => (index < NOTIFICATIONS_MAX_COUNT) ? ({ ...n, y: index * 4 }) : null).filter(n => !!n) as any[]),
         n => n.id,
         {
             from: { opacity: 0, transform: `translate(-50%, -4rem)` },
@@ -25,9 +28,13 @@ const Notification: React.FC<INotificationProps> = () => {
         }
     );
 
+    const prevNotifications = usePrevious(notifications);
 
     React.useEffect(() => {
-        setTimeout(() => dispatchNotification({ type: NotificationActions.DELETE, payload: notifications[0] }), 4000);
+        if ((prevNotifications as any[])?.length < notifications?.length) {
+            const newNotification = notifications.find(noti => prevNotifications?.map(prevNoti => prevNoti.id).indexOf(noti.id) === -1);
+            setTimeout(() => dispatchNotification({ type: NotificationActions.DELETE, payload: newNotification }), 3500);
+        }
         // eslint-disable-next-line
     }, [notifications]);
 

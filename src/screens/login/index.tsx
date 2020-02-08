@@ -99,14 +99,16 @@ const Login: React.FC<ILoginProps> = () => {
     }, [formController.isValidating]);
 
     const loginWithSocialMedia = (platform: ('Facebook' | 'GitHub' | 'Google')) => {
-        dispatchNotification({
-            type: NotificationActions.ADD,
-            payload: {
-                id: uuid(),
-                timeStamp: Date.now(),
-                type: NotificationType.Warning,
-                message: `Login with ${platform} is under development.`,
-            }
+        setTimeout(() => {
+            dispatchNotification({
+                type: NotificationActions.ADD,
+                payload: {
+                    id: uuid(),
+                    timeStamp: Date.now(),
+                    type: NotificationType.Warning,
+                    message: `Login with ${platform} is under development.`,
+                }
+            });
         });
     }
 
