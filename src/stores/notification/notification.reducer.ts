@@ -2,13 +2,18 @@ import { IAction } from '../../interfaces/action.interface';
 import { NotificationActions } from './notification.actions';
 import { INotification } from '../../interfaces/notification.interface';
 
+const MAX_NOTIFICATION_COUNT: number = 4;
+
 export const notificationReducer = (state: INotification[], action: IAction<NotificationActions, INotification | undefined>): INotification[] => {
     switch (action.type) {
         case NotificationActions.ADD:
             if (action.payload) {
                 return [
                     action.payload,
-                    ...(state.length === 5 ? state.filter((_, i) => i !== 4) : state)
+                    ...(state.length === MAX_NOTIFICATION_COUNT
+                        ? state.filter((_, i) => i !== MAX_NOTIFICATION_COUNT - 1)
+                        : state
+                    )
                 ]
             }
             else return [...state];

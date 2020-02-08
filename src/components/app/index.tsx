@@ -10,7 +10,7 @@ const App: React.FC<IAppProps> = () => {
 
     return (
         <AppContainer>
-            {/* <LoaderBanner /> */}
+            <LoaderBanner />
             <Notification />
             <TopCircle>
                 <InnerCircle />

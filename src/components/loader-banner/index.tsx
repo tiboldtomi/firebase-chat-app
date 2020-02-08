@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSpring } from 'react-spring';
+import { useLoaderBannerStore } from '../../stores';
 import { Banner, Loader, InnerLoader, ALoaderContainer, Text } from './styles';
 
 interface ILoaderBannerProps { }
@@ -11,15 +12,20 @@ const LoaderBanner: React.FC<ILoaderBannerProps> = () => {
         from: { opacity: 0 },
     });
 
-    return (
-        <Banner>
-            <ALoaderContainer stlye={{ opacity }}>
-                <Loader />
-                <InnerLoader />
-            </ALoaderContainer>
-            <Text>{'Loading...'}</Text>
-        </Banner>
-    );
+    const { loaderBanner } = useLoaderBannerStore();
+
+    if (loaderBanner.isLoading) {
+        return (
+            <Banner>
+                <ALoaderContainer stlye={{ opacity }}>
+                    <Loader />
+                    <InnerLoader />
+                </ALoaderContainer>
+                <Text>{loaderBanner.text}</Text>
+            </Banner>
+        );
+    }
+    else return null;
 };
 
 export default LoaderBanner;

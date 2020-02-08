@@ -37,16 +37,15 @@ const NotificationContainer = styled.div<INotificationContainerProps>`
 `;
 
 const NotificationText = styled.p<{ strLenght: number }>`
-    font-size: ${({ strLenght }) => strLenght > 25 ? '.8rem' : '1rem'};
-    font-weight: 400;
+    font-size: ${({ strLenght }) => strLenght > 27 ? '.75rem' : '1rem'};
 `;
 
 const IconContainer = styled.div<INotificationContainerProps>`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
     border: 2px solid;
     border-color: ${({ type }) => type === NotificationType.Danger
         ? theme.dangerFontColor
@@ -60,11 +59,22 @@ const IconContainer = styled.div<INotificationContainerProps>`
         : type === NotificationType.Success
             ? theme.successFontColor
             : theme.warningFontColor};
-    margin: 0 .6rem 0 1rem;
+    margin: 0 .5rem 0 .3rem;
+`;
+
+const DeleteIconContainer = styled.button`
+    all: unset;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 `;
 
 const AIconContainer = animated(IconContainer);
 const ANotificationText = animated(NotificationText);
+const ADeleteIconContainer = animated(DeleteIconContainer);
 const ANotificationContainer = animated(NotificationContainer);
 
 export {
@@ -72,6 +82,8 @@ export {
     AIconContainer,
     NotificationText,
     ANotificationText,
+    DeleteIconContainer,
+    ADeleteIconContainer,
     NotificationContainer,
     ANotificationContainer,
 };

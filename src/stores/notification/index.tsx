@@ -17,3 +17,5 @@ export const NotificationStoreProvider: React.FC<{}> = ({ children }) => {
 }
 
 export const useNotificationStore = () => React.useContext(NotificationStoreContext);
+
+export * from './notification.actions';

@@ -9,37 +9,37 @@ const useAnimation = () => {
     const { transform: subTitleAnimation } = useSpring({
         transform: 'translate3d(0px, 0px, 0px)',
         from: { transform: 'translate3d(0px, 600px, 0px)' },
-        delay: 100
+        delay: 50
     });
     const { transform: usernameFieldAnimation } = useSpring({
         transform: 'translate3d(0px, 0px, 0px)',
         from: { transform: 'translate3d(0px, 600px, 0px)' },
-        delay: 200
+        delay: 100
     });
     const { transform: emailFieldAnimation } = useSpring({
         transform: 'translate3d(0px, 0px, 0px)',
         from: { transform: 'translate3d(0px, 600px, 0px)' },
-        delay: 300
+        delay: 150
     });
     const { transform: pwFieldAnimation } = useSpring({
         transform: 'translate3d(0px, 0px, 0px)',
         from: { transform: 'translate3d(0px, 600px, 0px)' },
-        delay: 400
+        delay: 200
     });
     const { transform: confirmPWFieldAnimation } = useSpring({
         transform: 'translate3d(0px, 0px, 0px)',
         from: { transform: 'translate3d(0px, 600px, 0px)' },
-        delay: 500
+        delay: 250
     });
     const { transform: registerButtonAnimation } = useSpring({
         transform: 'translate3d(0px, 0px, 0px)',
         from: { transform: 'translate3d(0px, 600px, 0px)' },
-        delay: 600
+        delay: 300
     });
     const { transform: titleIconAnimation } = useSpring({
         transform: 'scale(1)',
         from: { transform: 'scale(0)' },
-        delay: 700,
+        delay: 350,
     });
 
     return {

@@ -3,9 +3,9 @@ import { useNotificationStore } from '../../stores';
 import { config, useTransition } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NotificationType } from '../../interfaces/notification.interface';
-import { faCheck, faInfo, faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { ANotificationContainer, NotificationText, AIconContainer } from './styles';
 import { NotificationActions } from '../../stores/notification/notification.actions';
+import { faCheck, faInfo, faExclamation, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { ANotificationContainer, NotificationText, AIconContainer, DeleteIconContainer } from './styles';
 
 interface INotificationProps { }
 
@@ -25,13 +25,11 @@ const Notification: React.FC<INotificationProps> = () => {
         }
     );
 
+
     React.useEffect(() => {
-        if (notifications.length > 0) {
-            setTimeout(() => dispatchNotification({ type: NotificationActions.DELETE, payload: notifications[0] }), 4000);
-        }
+        setTimeout(() => dispatchNotification({ type: NotificationActions.DELETE, payload: notifications[0] }), 4000);
         // eslint-disable-next-line
     }, [notifications]);
-
 
     return (
         <>
@@ -50,7 +48,17 @@ const Notification: React.FC<INotificationProps> = () => {
                                 }
                             />
                         </AIconContainer>
-                        <NotificationText strLenght={notification.message.length}>{notification.message}</NotificationText>
+                        <NotificationText strLenght={notification.message?.length}>{notification.message}</NotificationText>
+                        <DeleteIconContainer>
+                            <FontAwesomeIcon
+                                size={'lg'}
+                                icon={faTimes}
+                                onClick={() => dispatchNotification({
+                                    type: NotificationActions.DELETE,
+                                    payload: notification
+                                })}
+                            />
+                        </DeleteIconContainer>
                     </ANotificationContainer>
                 );
             })}

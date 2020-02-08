@@ -23,7 +23,6 @@ const LoaderContainer = styled.div`
 `;
 
 const Text = styled.p`
-    width: 1.8rem;
     height: 1.8rem;
     font-weight: 600;
     font-size: 1.2rem;

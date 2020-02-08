@@ -3,12 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './components';
 import * as serviceWorker from './serviceWorker';
-import { NotificationStoreProvider } from './stores';
+import { NotificationStoreProvider, LoaderBannerStoreProvider } from './stores';
 
 ReactDOM.render(
-    <NotificationStoreProvider>
-        <App />
-    </NotificationStoreProvider>,
+    <LoaderBannerStoreProvider>
+        <NotificationStoreProvider>
+            <App />
+        </NotificationStoreProvider>
+    </LoaderBannerStoreProvider>,
     document.getElementById('root')
 );
 
