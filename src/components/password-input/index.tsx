@@ -11,30 +11,21 @@ const PasswordInput: React.FC<IPasswordInput & React.InputHTMLAttributes<HTMLInp
 
     const [showPW, setShowPW] = React.useState<boolean>(false);
 
-    const inputRef = React.useRef<HTMLInputElement>();
-
-    const updateShowPW = (show: boolean) => {
-        inputRef.current?.focus();
-        setShowPW(show);
-    }
-
     return (
         <PasswordInputContainer style={{ ...style }}>
-            <EyeIconContainer>
+            <EyeIconContainer htmlFor={rest.name} onClick={() => setShowPW(!showPW)}>
                 {!showPW
                     ? <FontAwesomeIcon
                         icon={faEye}
-                        onClick={e => updateShowPW(true)}
                         style={{ width: '1.5rem', height: '1.5rem' }}
                     />
                     : <FontAwesomeIcon
                         icon={faEyeSlash}
-                        onClick={e => updateShowPW(false)}
                         style={{ width: '1.5rem', height: '1.5rem' }}
                     />
                 }
             </EyeIconContainer>
-            <Input ref={inputRef} type={showPW ? 'text' : 'password'} {...rest} />
+            <Input id={rest.name} type={showPW ? 'text' : 'password'} {...rest} />
         </PasswordInputContainer>
     );
 }

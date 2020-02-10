@@ -6,7 +6,7 @@ export const PasswordInputContainer = styled.div`
     width: 100%;
 `;
 
-export const EyeIconContainer = styled.div`
+export const EyeIconContainer = styled.label`
     z-index: 10;
     position: absolute;
     height: calc(100% - .7rem);

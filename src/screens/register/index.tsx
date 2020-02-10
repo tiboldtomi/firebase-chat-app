@@ -3,15 +3,14 @@ import { uuid } from 'uuidv4';
 import * as React from 'react';
 import { useFormik } from 'formik';
 import { useAnimation } from './hooks';
-import { animated } from 'react-spring';
-import { usePrevious } from '../../utils';
+import { Redirect } from 'react-router-dom';
 import { RegisterContainer } from './styles';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button, Input, PasswordInput } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { H1, TitleContainer, TitleIcon, SubTitle } from '../login/styles';
 import { NotificationType } from '../../interfaces/notification.interface';
-import { useNotificationStore, NotificationActions, useLoaderBannerStore, LoaderBannerActions } from '../../stores';
+import { useNotificationStore, NotificationActions, useAuthStore } from '../../stores';
 
 const validationSchema = yup.object().shape({
     username: yup.string()
@@ -42,8 +41,8 @@ interface IRegisterProps { }
 
 const Register: React.FC<IRegisterProps> = () => {
 
+    const { currentUser } = useAuthStore();
     const { dispatchNotification } = useNotificationStore();
-    const { dispatchIsLoading } = useLoaderBannerStore();
 
     const {
         titleAnimation,
@@ -100,77 +99,66 @@ const Register: React.FC<IRegisterProps> = () => {
         // eslint-disable-next-line
     }, [formController.isSubmitting]);
 
-    const isValidatingPrevious = usePrevious(formController.isValidating);
+    if (!currentUser) {
 
-    React.useEffect(() => {
-        if (formController.isValidating) {
-            dispatchIsLoading({ type: LoaderBannerActions.START, payload: { isLoading: true, text: 'Logging in...' } });
-        }
-        else if (!formController.isValidating && isValidatingPrevious) {
-            dispatchIsLoading({ type: LoaderBannerActions.STOP, payload: { isLoading: false } });
-        }
-        // eslint-disable-next-line
-    }, [formController.isValidating]);
-
-
-    const AH1 = animated(H1);
-    const ASubTitle = animated(SubTitle);
-    const ATitleIcon = animated(TitleIcon);
-
-    return (
-        <RegisterContainer>
-            <TitleContainer>
-                <AH1 style={{ opacity: titleAnimation }}>{'great idea'}</AH1>
-                <ATitleIcon style={{ transform: titleIconAnimation }}>
-                    <FontAwesomeIcon icon={faUserPlus} style={{ width: '100%', height: '100%' }} />
-                </ATitleIcon>
-            </TitleContainer>
-            <ASubTitle style={{ transform: subTitleAnimation }}>{'register now'}</ASubTitle>
-            <Input
-                name={'username'}
-                placeholder={'username'}
-                value={formController.values.username}
-                onChange={formController.handleChange}
-                style={{ transform: usernameFieldAnimation }}
-                isValid={!!(formController.touched.username && !formController.errors.username)}
-                isInvalid={!!(formController.touched.username && !!formController.errors.username)}
-            />
-            <Input
-                name={'email'}
-                placeholder={'email'}
-                value={formController.values.email}
-                onChange={formController.handleChange}
-                style={{ transform: emailFieldAnimation }}
-                isValid={!!(formController.touched.email && !formController.errors.email)}
-                isInvalid={!!(formController.touched.email && !!formController.errors.email)}
-            />
-            <PasswordInput
-                name={'password'}
-                placeholder={'password'}
-                value={formController.values.password}
-                onChange={formController.handleChange}
-                style={{ transform: pwFieldAnimation }}
-                isValid={!!(formController.touched.password && !formController.errors.password)}
-                isInvalid={!!(formController.touched.password && !!formController.errors.password)}
-            />
-            <PasswordInput
-                name={'confirmPassword'}
-                placeholder={'confirm password'}
-                onChange={formController.handleChange}
-                value={formController.values.confirmPassword}
-                style={{ transform: confirmPWFieldAnimation }}
-                isValid={!!(formController.touched.confirmPassword && !formController.errors.confirmPassword)}
-                isInvalid={!!(formController.touched.confirmPassword && !!formController.errors.confirmPassword)}
-            />
-            <Button
-                variant={'primary'}
-                onClick={formController.handleSubmit}
-                style={{ transform: registerButtonAnimation }}
-            >
-                {'register'}
-            </Button>
-        </RegisterContainer>
-    );
+        return (
+            <RegisterContainer>
+                <TitleContainer>
+                    <H1 style={{ opacity: titleAnimation }}>{'great idea'}</H1>
+                    <TitleIcon style={{ transform: titleIconAnimation }}>
+                        <FontAwesomeIcon icon={faUserPlus} style={{ width: '100%', height: '100%' }} />
+                    </TitleIcon>
+                </TitleContainer>
+                <SubTitle style={{ transform: subTitleAnimation }}>{'register now'}</SubTitle>
+                <Input
+                    name={'username'}
+                    placeholder={'username'}
+                    value={formController.values.username}
+                    onChange={formController.handleChange}
+                    style={{ transform: usernameFieldAnimation }}
+                    isValid={!!(formController.touched.username && !formController.errors.username)}
+                    isInvalid={!!(formController.touched.username && !!formController.errors.username)}
+                />
+                <Input
+                    name={'email'}
+                    placeholder={'email'}
+                    value={formController.values.email}
+                    onChange={formController.handleChange}
+                    style={{ transform: emailFieldAnimation }}
+                    isValid={!!(formController.touched.email && !formController.errors.email)}
+                    isInvalid={!!(formController.touched.email && !!formController.errors.email)}
+                />
+                <PasswordInput
+                    name={'password'}
+                    placeholder={'password'}
+                    value={formController.values.password}
+                    onChange={formController.handleChange}
+                    style={{ transform: pwFieldAnimation }}
+                    isValid={!!(formController.touched.password && !formController.errors.password)}
+                    isInvalid={!!(formController.touched.password && !!formController.errors.password)}
+                />
+                <PasswordInput
+                    name={'confirmPassword'}
+                    placeholder={'confirm password'}
+                    onChange={formController.handleChange}
+                    value={formController.values.confirmPassword}
+                    style={{ transform: confirmPWFieldAnimation }}
+                    isValid={!!(formController.touched.confirmPassword && !formController.errors.confirmPassword)}
+                    isInvalid={!!(formController.touched.confirmPassword && !!formController.errors.confirmPassword)}
+                />
+                <Button
+                    variant={'primary'}
+                    onClick={formController.handleSubmit}
+                    style={{ transform: registerButtonAnimation }}
+                >
+                    {'register'}
+                </Button>
+            </RegisterContainer>
+        );
+    }
+    else {
+        return <Redirect to={'/home'} />
+    }
 }
 
 export default Register;

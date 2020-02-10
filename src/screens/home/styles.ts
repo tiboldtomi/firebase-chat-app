@@ -2,7 +2,7 @@ import { theme } from '../../utils';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 
-const _LoginContainer = styled.div`
+const _HomeContainer = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
@@ -51,5 +51,5 @@ const _SubTitle = styled.h2`
 export const H1 = animated(_H1);
 export const SubTitle = animated(_SubTitle);
 export const TitleIcon = animated(_TitleIcon);
+export const HomeContainer = animated(_HomeContainer);
 export const TitleContainer = animated(_TitleContainer);
-export const LoginContainer = animated(_LoginContainer);

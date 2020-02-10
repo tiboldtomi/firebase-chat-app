@@ -1,5 +1,6 @@
 import { theme } from '../../utils';
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 
 const SocialMediaButton = styled.button`
     all: unset;
@@ -16,4 +17,4 @@ const SocialMediaButton = styled.button`
     margin: 0 .75rem;
 `;
 
-export default SocialMediaButton;
+export default animated(SocialMediaButton);

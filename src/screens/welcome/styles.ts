@@ -1,7 +1,8 @@
 import { theme } from '../../utils';
 import styled from 'styled-components';
+import { animated } from 'react-spring';
 
-export const WelcomeContainer = styled.div`
+const _WelcomeContainer = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
@@ -11,7 +12,7 @@ export const WelcomeContainer = styled.div`
     justify-content: flex-end;
 `;
 
-export const WelcomeCircle = styled.div`
+const _WelcomeCircle = styled.div`
     position: absolute;
     top: 0;
     width: ${theme.vw > theme.vh ? '100vw' : '100vh'};
@@ -30,26 +31,26 @@ export const WelcomeCircle = styled.div`
     }
 `;
 
-export const H1 = styled.h1`
+const _H1 = styled.h1`
     font-size: 3.5rem;
     color: ${theme.defaultFontColor};
     text-align: center;
-    letter-spacing: 2px;
-    margin-bottom: 2.5vh;
+        letter-spacing: 2px;
+        margin-bottom: 2.5vh;
 
-    @media (max-width: 700px) {
-        font-size: 2.5rem;
-    }
+        @media (max-width: 700px) {
+            font-size: 2.5rem;
+        }
 `;
 
-export const TitleContainer = styled.div`
+const _TitleContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 `;
 
-export const TitleIcon = styled.div`
+const _TitleIcon = styled.div`
     height: 5rem;
     display: flex;
     align-items: center;
@@ -61,7 +62,7 @@ export const TitleIcon = styled.div`
     }
 `;
 
-export const ControlsContainer = styled.div`
+const _ControlsContainer = styled.div`
     width: 100%;
     padding: 0 10vw 10vh;
     display: flex;
@@ -69,7 +70,7 @@ export const ControlsContainer = styled.div`
     align-items: center;
 `;
 
-export const P = styled.p`
+const _P = styled.p`
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -79,9 +80,18 @@ export const P = styled.p`
     text-align: center;
 `;
 
-export const SocialMediaContainer = styled.div`
+const _SocialMediaContainer = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
+
+export const P = animated(_P);
+export const H1 = animated(_H1);
+export const TitleIcon = animated(_TitleIcon);
+export const WelcomeCircle = animated(_WelcomeCircle);
+export const TitleContainer = animated(_TitleContainer);
+export const WelcomeContainer = animated(_WelcomeContainer);
+export const ControlsContainer = animated(_ControlsContainer);
+export const SocialMediaContainer = animated(_SocialMediaContainer);
