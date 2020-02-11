@@ -4,9 +4,7 @@ import { animated } from 'react-spring';
 
 const _LoginContainer = styled.div`
     position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 15vh 10vw 1vh;
+    padding: 15vh 10vw 5vh;
     display: flex;
     flex-direction: column;
     align-items: center;

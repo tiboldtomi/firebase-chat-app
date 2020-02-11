@@ -3,7 +3,7 @@ import { useFirebase } from '../../utils';
 import { HashRouter, Switch } from 'react-router-dom';
 import { Login, Home, Register, Welcome } from '../../screens';
 import { AuthorizedRoute, UnauthorizedRoute, Notification, LoaderBanner } from '../';
-import { AppContainer, BottomCircle, InnerCircle, TopCircle } from './styles';
+import { AppContainer, BottomCircle, InnerCircle, TopCircle, ScreensContainer } from './styles';
 import { NotificationStoreProvider, LoaderBannerStoreProvider, AuthStoreProvider } from '../../stores';
 
 interface IAppProps { }
@@ -32,17 +32,19 @@ const App: React.FC<IAppProps> = () => {
                         <BottomCircle>
                             <InnerCircle />
                         </BottomCircle>
-                        {firebaseInitialized
-                            ? <HashRouter basename="/">
-                                <Switch>
-                                    <AuthorizedRoute exact={true} path={'/home'} screen={<Home />} />
-                                    <UnauthorizedRoute exact={true} path={'/'} screen={<Welcome />} />
-                                    <UnauthorizedRoute exact={true} path={'/login'} screen={<Login />} />
-                                    <UnauthorizedRoute exact={true} path={'/register'} screen={<Register />} />
-                                </Switch>
-                            </HashRouter>
-                            : <></>
-                        }
+                        <ScreensContainer>
+                            {firebaseInitialized
+                                ? <HashRouter basename="/">
+                                    <Switch>
+                                        <AuthorizedRoute exact={true} path={'/home'} screen={<Home />} />
+                                        <UnauthorizedRoute exact={true} path={'/'} screen={<Welcome />} />
+                                        <UnauthorizedRoute exact={true} path={'/login'} screen={<Login />} />
+                                        <UnauthorizedRoute exact={true} path={'/register'} screen={<Register />} />
+                                    </Switch>
+                                </HashRouter>
+                                : <></>
+                            }
+                        </ScreensContainer>
                     </AppContainer>
                 </NotificationStoreProvider>
             </LoaderBannerStoreProvider>

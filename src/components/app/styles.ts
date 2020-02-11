@@ -9,6 +9,12 @@ export const AppContainer = styled.div`
     background-image: linear-gradient(135deg, rgba(48,48,48,1) 0%, rgba(255,255,255,.05) 100%);
 `;
 
+export const ScreensContainer = styled.div`
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+`;
+
 export const BottomCircle = styled.div`
     position: absolute;
     left: 0;

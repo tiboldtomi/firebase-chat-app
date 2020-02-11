@@ -4,12 +4,13 @@ import { animated } from 'react-spring';
 
 const _WelcomeContainer = styled.div`
     position: relative;
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: flex-end;
+    min-height: 600px;
+    height: 100%;
+    overflow-x: hidden;
 `;
 
 const _WelcomeCircle = styled.div`

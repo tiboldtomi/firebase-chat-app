@@ -2,6 +2,8 @@ const theme = {
     vw: document.documentElement.clientWidth,
     vh: document.documentElement.clientHeight,
 
+    baseHeight: '3rem',   
+
     fontSize: '16px',
     defaultFontColor: '#fff',
     primaryFontColor: '#0e9aa7',
