@@ -104,8 +104,10 @@ const Login: React.FC<ILoginProps> = () => {
     }, [formController.isSubmitting]);
 
     const _loginWithSocialMedia = (platform: ('Facebook' | 'GitHub' | 'Google')) => {
+        dispatchIsLoading({ type: LoaderBannerActions.START, payload: { isLoading: true, text: `Logging in with ${platform}...` } });
         loginSocialMedia(platform)
             .then(() => {
+                dispatchIsLoading({ type: LoaderBannerActions.STOP, payload: { isLoading: false } });
                 dispatchNotification({
                     type: NotificationActions.ADD,
                     payload: {
@@ -117,6 +119,7 @@ const Login: React.FC<ILoginProps> = () => {
                 });
             })
             .catch(({ message }) => {
+                dispatchIsLoading({ type: LoaderBannerActions.STOP, payload: { isLoading: false } });
                 dispatchNotification({
                     type: NotificationActions.ADD,
                     payload: {

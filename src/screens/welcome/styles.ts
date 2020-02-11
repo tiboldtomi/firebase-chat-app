@@ -11,6 +11,7 @@ const _WelcomeContainer = styled.div`
     min-height: 600px;
     height: 100%;
     overflow-x: hidden;
+    overflow-y: scroll;
 `;
 
 const _WelcomeCircle = styled.div`

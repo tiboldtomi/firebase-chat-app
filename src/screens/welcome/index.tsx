@@ -1,15 +1,15 @@
 import { uuid } from 'uuidv4';
 import * as React from 'react';
-import { theme, useFirebase } from '../../utils';
 import { useAnimation } from './hooks';
 import { useSpring } from 'react-spring';
 import { useHistory } from 'react-router-dom';
+import { theme, useFirebase } from '../../utils';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { Button, SocialMediaButton } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useNotificationStore, NotificationActions } from '../../stores';
 import { NotificationType } from '../../interfaces/notification.interface';
 import { faGoogle, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { useNotificationStore, NotificationActions, useLoaderBannerStore, LoaderBannerActions } from '../../stores';
 import { WelcomeContainer, WelcomeCircle, H1, ControlsContainer, P, SocialMediaContainer, TitleContainer, TitleIcon } from './styles';
 
 interface IWelcomeProps { }
@@ -18,6 +18,7 @@ const Welcome: React.FC<IWelcomeProps> = () => {
 
     const history = useHistory();
     const { loginSocialMedia } = useFirebase();
+    const { dispatchIsLoading } = useLoaderBannerStore();
     const { dispatchNotification } = useNotificationStore();
 
     const { vh, vw } = theme;
@@ -38,8 +39,10 @@ const Welcome: React.FC<IWelcomeProps> = () => {
     };
 
     const _loginWithSocialMedia = (platform: ('Facebook' | 'GitHub' | 'Google')) => {
+        dispatchIsLoading({ type: LoaderBannerActions.START, payload: { isLoading: true, text: `Logging in with ${platform}...` } });
         loginSocialMedia(platform)
             .then(() => {
+                dispatchIsLoading({ type: LoaderBannerActions.STOP, payload: { isLoading: false } });
                 dispatchNotification({
                     type: NotificationActions.ADD,
                     payload: {
@@ -51,6 +54,7 @@ const Welcome: React.FC<IWelcomeProps> = () => {
                 });
             })
             .catch(({ message }) => {
+                dispatchIsLoading({ type: LoaderBannerActions.STOP, payload: { isLoading: false } });
                 dispatchNotification({
                     type: NotificationActions.ADD,
                     payload: {
