@@ -48,8 +48,20 @@ const _SubTitle = styled.h2`
     font-weight: 600;
 `;
 
+const _ForgotPassword = styled.p`
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: ${theme.defaultFontColor};
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-align: center;
+    align-self: flex-end;
+`;
+
 export const H1 = animated(_H1);
 export const SubTitle = animated(_SubTitle);
 export const TitleIcon = animated(_TitleIcon);
 export const TitleContainer = animated(_TitleContainer);
 export const LoginContainer = animated(_LoginContainer);
+export const ForgotPassword = animated(_ForgotPassword);

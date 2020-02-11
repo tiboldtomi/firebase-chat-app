@@ -7,9 +7,12 @@ export const AuthContext = React.createContext<{ currentUser: User | null }>({ c
 export const AuthStoreProvider: React.FC<{}> = ({ children }) => {
 
     const [currentUser, setCurrentUser] = React.useState<User | null>(null);
+    const { auth } = useFirebase();
 
     React.useEffect(() => {
-        useFirebase.auth().onAuthStateChanged(user => setCurrentUser(user));
+        const unsubscribe = auth.onAuthStateChanged(user => setCurrentUser(user));
+        return () => unsubscribe();
+        // eslint-disable-next-line
     }, []);
 
     return (

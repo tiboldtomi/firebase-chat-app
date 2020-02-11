@@ -3,9 +3,11 @@ import { useSpring } from 'react-spring';
 import { useLoaderBannerStore } from '../../stores';
 import { Banner, Loader, InnerLoader, ALoaderContainer, Text } from './styles';
 
-interface ILoaderBannerProps { }
+interface ILoaderBannerProps {
+    forceShow?: boolean;
+}
 
-const LoaderBanner: React.FC<ILoaderBannerProps> = () => {
+const LoaderBanner: React.FC<ILoaderBannerProps> = ({ forceShow }) => {
 
     const { opacity } = useSpring({
         opacity: 1,
@@ -14,14 +16,14 @@ const LoaderBanner: React.FC<ILoaderBannerProps> = () => {
 
     const { loaderBanner } = useLoaderBannerStore();
 
-    if (loaderBanner.isLoading) {
+    if (loaderBanner.isLoading || forceShow) {
         return (
             <Banner>
                 <ALoaderContainer stlye={{ opacity }}>
                     <Loader />
                     <InnerLoader />
                 </ALoaderContainer>
-                <Text>{loaderBanner.text}</Text>
+                <Text>{loaderBanner.text || 'Loading...'}</Text>
             </Banner>
         );
     }

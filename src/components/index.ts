@@ -2,14 +2,16 @@ import App from './app';
 import Notification from './notification';
 import LoaderBanner from './loader-banner';
 import PasswordInput from './password-input';
-import AuthenticatedRoute from './authenticated-route';
+import AuthorizedRoute from './authorized-route';
+import UnauthorizedRoute from './unauthorized-route';
 
 export {
     App,
     Notification,
     LoaderBanner,
     PasswordInput,
-    AuthenticatedRoute,
+    AuthorizedRoute,
+    UnauthorizedRoute,
 };
 
 export * from './styles';

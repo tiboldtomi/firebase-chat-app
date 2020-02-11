@@ -1,19 +1,21 @@
 import { uuid } from 'uuidv4';
 import * as React from 'react';
 import { useFirebase } from '../../utils';
-import { Button } from '../../components';
 import { HomeContainer, H1 } from './styles';
-import { useNotificationStore, NotificationActions } from '../../stores';
+import { Button, Input } from '../../components';
 import { NotificationType } from '../../interfaces/notification.interface';
+import { useNotificationStore, NotificationActions, useAuthStore } from '../../stores';
 
 interface IHomeProps { }
 
 const Home: React.FC<IHomeProps> = () => {
 
+    const { logout } = useFirebase();
+    const { currentUser } = useAuthStore();
     const { dispatchNotification } = useNotificationStore();
 
-    const logout = () => {
-        useFirebase.auth().signOut()
+    const _logout = () => {
+        logout()
             .then(() => {
                 dispatchNotification({
                     type: NotificationActions.ADD,
@@ -27,17 +29,34 @@ const Home: React.FC<IHomeProps> = () => {
             });
     }
 
-    return (
-        <HomeContainer>
-            <H1>{'Welcome!'}</H1>
-            <Button
-                variant={'default'}
-                onClick={() => logout()}
-            >
-                {'Sign out'}
-            </Button>
-        </HomeContainer>
-    );
+    const [username, setUsername] = React.useState<string>(currentUser?.displayName as string);
+
+    if (currentUser?.displayName) {
+        return (
+            <HomeContainer>
+                <H1>{`Welcome, ${currentUser?.displayName}!`}</H1>
+                <Input
+                    type={'text'}
+                    value={username}
+                    placeholder={'Change username'}
+                    onChange={(e: any) => setUsername(e.target.value)}
+                />
+                <Button
+                    variant={'primary'}
+                    onClick={() => currentUser.updateProfile({ displayName: username })}
+                >
+                    {'Change username'}
+                </Button>
+                <Button
+                    onClick={_logout}
+                    variant={'default'}
+                >
+                    {'Logout'}
+                </Button>
+            </HomeContainer>
+        );
+    }
+    else return <></>;
 }
 
 export default Home;

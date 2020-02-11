@@ -34,6 +34,7 @@ const NotificationContainer = styled.div<INotificationContainerProps>`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    padding-right: 2rem;
 `;
 
 const NotificationText = styled.p<{ strLenght: number }>`
@@ -44,8 +45,8 @@ const IconContainer = styled.div<INotificationContainerProps>`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.8rem;
-    height: 1.8rem;
+    min-width: 1.8rem;
+    min-height: 1.8rem;
     border: 2px solid;
     border-color: ${({ type }) => type === NotificationType.Danger
         ? theme.dangerFontColor
