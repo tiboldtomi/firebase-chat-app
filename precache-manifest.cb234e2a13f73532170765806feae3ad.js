@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "20b190ae7e586dc584ae26351f8f606f",
+    "revision": "858988853d3baef9918c6940c5b22221",
     "url": "/firebase-chat-app/index.html"
   },
   {
-    "revision": "3d5126d2d821244a272c",
+    "revision": "a7e5f1bb16c9c483e15d",
     "url": "/firebase-chat-app/static/css/main.111c6ae1.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/firebase-chat-app/static/js/2.41865840.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3d5126d2d821244a272c",
-    "url": "/firebase-chat-app/static/js/main.b309900b.chunk.js"
+    "revision": "a7e5f1bb16c9c483e15d",
+    "url": "/firebase-chat-app/static/js/main.4c3e1552.chunk.js"
   },
   {
     "revision": "3674b93db369a9313d1e",
