@@ -20,12 +20,13 @@ const LoaderContainer = styled.div`
     width: 1.8rem;
     height: 1.8rem;
     margin: .5rem;
+    margin-right: 5px;
 `;
 
 const Text = styled.p`
-    height: 1.8rem;
+    height: 1.6rem;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: .9rem;
     text-transform: uppercase;
     color: rgba(255,255,255,.3);
     margin-bottom: .25rem;
@@ -44,8 +45,8 @@ const Loader = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.6rem;
+    height: 1.6rem;
     border-radius: 5px;
     transform-origin: top left;
     background: rgba(255,255,255,.3);
@@ -65,8 +66,8 @@ const InnerLoader = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 5px;
     transform-origin: top left;
     background: ${theme.primaryColor};
