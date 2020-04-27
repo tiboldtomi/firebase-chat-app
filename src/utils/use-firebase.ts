@@ -1,6 +1,7 @@
 import 'firebase/auth';
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
+import { LoginPlatform } from '../enums';
 import { firebaseConfig } from '../constants';
 
 class Firebase {
@@ -38,10 +39,10 @@ class Firebase {
         return this.auth.sendPasswordResetEmail(email);
     }
 
-    public loginSocialMedia = (platform: ('Facebook' | 'GitHub' | 'Google')) => {
-        const provider = platform === 'Facebook'
+    public loginSocialMedia = (platform: LoginPlatform) => {
+        const provider = platform === LoginPlatform.Facebook
             ? new firebase.auth.FacebookAuthProvider()
-            : platform === 'Google'
+            : platform === LoginPlatform.Google
                 ? new firebase.auth.GoogleAuthProvider()
                 : new firebase.auth.GithubAuthProvider();
         return this.auth.signInWithPopup(provider);

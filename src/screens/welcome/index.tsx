@@ -2,6 +2,7 @@ import { uuid } from 'uuidv4';
 import * as React from 'react';
 import { useAnimation } from './hooks';
 import { useSpring } from 'react-spring';
+import { LoginPlatform } from '../../enums';
 import { useHistory } from 'react-router-dom';
 import { theme, useFirebase } from '../../utils';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
@@ -38,7 +39,7 @@ const Welcome: React.FC<IWelcomeProps> = () => {
         setTimeout(() => history.push(path), 400);
     };
 
-    const _loginWithSocialMedia = (platform: ('Facebook' | 'GitHub' | 'Google')) => {
+    const _loginWithSocialMedia = (platform: LoginPlatform) => {
         dispatchIsLoading({ type: LoaderBannerActions.START, payload: { isLoading: true, text: `Logging in with ${platform}...` } });
         loginSocialMedia(platform)
             .then(() => {
@@ -86,13 +87,13 @@ const Welcome: React.FC<IWelcomeProps> = () => {
                 </Button>
                 <P style={{ transform: socialMediaContainerTransform }}>{'or login using social media'}</P>
                 <SocialMediaContainer style={{ transform: socialMediaContainerTransform }}>
-                    <SocialMediaButton onClick={() => _loginWithSocialMedia('Facebook')}>
+                    <SocialMediaButton onClick={() => _loginWithSocialMedia(LoginPlatform.Facebook)}>
                         <FontAwesomeIcon icon={faFacebookF} size={'2x'} />
                     </SocialMediaButton>
-                    <SocialMediaButton onClick={() => _loginWithSocialMedia('Google')}>
+                    <SocialMediaButton onClick={() => _loginWithSocialMedia(LoginPlatform.Google)}>
                         <FontAwesomeIcon icon={faGoogle} size={'2x'} />
                     </SocialMediaButton>
-                    <SocialMediaButton onClick={() => _loginWithSocialMedia('GitHub')}>
+                    <SocialMediaButton onClick={() => _loginWithSocialMedia(LoginPlatform.GitHub)}>
                         <FontAwesomeIcon icon={faGithub} size={'2x'} />
                     </SocialMediaButton>
                 </SocialMediaContainer>

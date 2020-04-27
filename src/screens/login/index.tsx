@@ -4,6 +4,7 @@ import * as React from 'react';
 import { useFormik } from 'formik';
 import { useAnimation } from './hooks';
 import { useFirebase } from '../../utils';
+import { LoginPlatform } from '../../enums';
 import { SocialMediaContainer, P } from '../welcome/styles';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -103,7 +104,7 @@ const Login: React.FC<ILoginProps> = () => {
         // eslint-disable-next-line
     }, [formController.isSubmitting]);
 
-    const _loginWithSocialMedia = (platform: ('Facebook' | 'GitHub' | 'Google')) => {
+    const _loginWithSocialMedia = (platform: LoginPlatform) => {
         dispatchIsLoading({ type: LoaderBannerActions.START, payload: { isLoading: true, text: `Logging in with ${platform}...` } });
         loginSocialMedia(platform)
             .then(() => {
@@ -168,13 +169,13 @@ const Login: React.FC<ILoginProps> = () => {
             </Button>
             <P style={{ transform: socialMediaAnimation }}>{'or login using social media'}</P>
             <SocialMediaContainer style={{ transform: socialMediaAnimation }}>
-                <SocialMediaButton onClick={() => _loginWithSocialMedia('Facebook')}>
+                <SocialMediaButton onClick={() => _loginWithSocialMedia(LoginPlatform.Facebook)}>
                     <FontAwesomeIcon icon={faFacebookF} size={'2x'} />
                 </SocialMediaButton>
-                <SocialMediaButton onClick={() => _loginWithSocialMedia('Google')}>
+                <SocialMediaButton onClick={() => _loginWithSocialMedia(LoginPlatform.Google)}>
                     <FontAwesomeIcon icon={faGoogle} size={'2x'} />
                 </SocialMediaButton>
-                <SocialMediaButton onClick={() => _loginWithSocialMedia('GitHub')}>
+                <SocialMediaButton onClick={() => _loginWithSocialMedia(LoginPlatform.GitHub)}>
                     <FontAwesomeIcon icon={faGithub} size={'2x'} />
                 </SocialMediaButton>
             </SocialMediaContainer>

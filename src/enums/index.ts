@@ -1,0 +1,1 @@
+export { default as LoginPlatform } from './login-platform';
