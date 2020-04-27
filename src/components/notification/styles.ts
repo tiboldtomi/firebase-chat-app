@@ -39,6 +39,7 @@ const NotificationContainer = styled.div<INotificationContainerProps>`
 
 const NotificationText = styled.p<{ strLenght: number }>`
     font-size: ${({ strLenght }) => strLenght > 27 ? '.75rem' : '1rem'};
+    text-align: justify;
 `;
 
 const IconContainer = styled.div<INotificationContainerProps>`
