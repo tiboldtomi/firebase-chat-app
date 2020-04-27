@@ -5,11 +5,11 @@ import { useFormik } from 'formik';
 import { useAnimation } from './hooks';
 import { useFirebase } from '../../utils';
 import { RegisterContainer } from './styles';
+import { NotificationType } from '../../enums';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button, Input, PasswordInput } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { H1, TitleContainer, TitleIcon, SubTitle } from '../login/styles';
-import { NotificationType } from '../../interfaces/notification.interface';
 import { useNotificationStore, NotificationActions, LoaderBannerActions, useLoaderBannerStore } from '../../stores';
 
 const validationSchema = yup.object().shape({

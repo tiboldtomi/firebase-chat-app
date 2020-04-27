@@ -1,4 +1,4 @@
-import { IAction } from '../../interfaces/action.interface';
+import { IAction } from '../../interfaces';
 import { NotificationActions } from './notification.actions';
 import { INotification } from '../../interfaces/notification.interface';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IAction } from './action.interface';
+import { default as IAction } from './action.interface';
 import { LoaderBannerActions } from '../stores/loader-banner/loader-banner.actions';
 
 export interface ILoaderBanner {

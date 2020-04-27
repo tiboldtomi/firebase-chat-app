@@ -2,14 +2,13 @@ import { uuid } from 'uuidv4';
 import * as React from 'react';
 import { useAnimation } from './hooks';
 import { useSpring } from 'react-spring';
-import { LoginPlatform } from '../../enums';
 import { useHistory } from 'react-router-dom';
 import { theme, useFirebase } from '../../utils';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { Button, SocialMediaButton } from '../../components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NotificationType } from '../../interfaces/notification.interface';
-import { faGoogle, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { LoginPlatform, NotificationType } from '../../enums';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useNotificationStore, NotificationActions, useLoaderBannerStore, LoaderBannerActions } from '../../stores';
 import { WelcomeContainer, WelcomeCircle, H1, ControlsContainer, P, SocialMediaContainer, TitleContainer, TitleIcon } from './styles';
 

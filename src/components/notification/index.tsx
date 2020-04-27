@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { usePrevious } from '../../utils';
+import { NotificationType } from '../../enums';
 import { useNotificationStore } from '../../stores';
 import { config, useTransition } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NotificationType } from '../../interfaces/notification.interface';
 import { NotificationActions } from '../../stores/notification/notification.actions';
 import { faCheck, faInfo, faExclamation, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ANotificationContainer, NotificationText, AIconContainer, DeleteIconContainer } from './styles';

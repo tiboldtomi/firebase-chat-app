@@ -2,8 +2,8 @@ import { uuid } from 'uuidv4';
 import * as React from 'react';
 import { useFirebase } from '../../utils';
 import { HomeContainer, H1 } from './styles';
+import { NotificationType } from '../../enums';
 import { Button, Input } from '../../components';
-import { NotificationType } from '../../interfaces/notification.interface';
 import { useNotificationStore, NotificationActions, useAuthStore } from '../../stores';
 
 interface IHomeProps { }

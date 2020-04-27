@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { notificationReducer } from './notification.reducer';
-import { INotification, INotificationContext } from '../../interfaces/notification.interface';
+import { INotification, INotificationContext } from '../../interfaces';
 
 const initialState: INotification[] = [];
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { loaderBannerReducer } from './loader-banner.reducer';
-import { ILoaderBannerContext, ILoaderBanner } from '../../interfaces/loader-banner.interface';
+import { ILoaderBannerContext, ILoaderBanner } from '../../interfaces';
 
 const initialState: ILoaderBanner = {
     text: undefined,

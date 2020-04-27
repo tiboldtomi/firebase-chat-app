@@ -1,4 +1,4 @@
-import { IAction } from '../../interfaces/action.interface';
+import { IAction } from '../../interfaces';
 import { LoaderBannerActions } from './loader-banner.actions';
 import { ILoaderBanner } from '../../interfaces/loader-banner.interface';
 

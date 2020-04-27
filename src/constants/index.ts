@@ -1,5 +1,1 @@
-import firebaseConfig from './firebase-config';
-
-export {
-    firebaseConfig
-};
+export { default as firebaseConfig } from './firebase-config';

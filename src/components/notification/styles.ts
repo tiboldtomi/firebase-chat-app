@@ -1,7 +1,7 @@
 import { theme } from '../../utils';
 import styled from 'styled-components';
 import { animated } from 'react-spring';
-import { NotificationType } from '../../interfaces/notification.interface';
+import { NotificationType } from '../../enums';
 
 interface INotificationContainerProps {
     type: NotificationType;
