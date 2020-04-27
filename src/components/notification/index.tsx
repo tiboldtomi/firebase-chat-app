@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { usePrevious } from '../../utils';
+import { useDrag } from 'react-use-gesture';
 import { NotificationType } from '../../enums';
+import { usePrevious, theme } from '../../utils';
 import { useNotificationStore } from '../../stores';
-import { config, useTransition } from 'react-spring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { config, useTransition, useSpring, interpolate } from 'react-spring';
 import { NotificationActions } from '../../stores/notification/notification.actions';
 import { faCheck, faInfo, faExclamation, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ANotificationContainer, NotificationText, AIconContainer, DeleteIconContainer } from './styles';
@@ -14,16 +15,18 @@ interface INotificationProps { }
 
 const Notification: React.FC<INotificationProps> = () => {
 
+    const { vw } = theme;
+    const [dragId, setDragId] = React.useState<string | null>(null);
     const { notifications, dispatchNotification } = useNotificationStore();
 
     const notificationAnimations = useTransition(
         (notifications.map((n, index) => (index < NOTIFICATIONS_MAX_COUNT) ? ({ ...n, y: index * 4 }) : null).filter(n => !!n) as any[]),
         n => n.id,
         {
-            from: { opacity: 0, transform: `translate(-50%, -4rem)` },
+            from: { opacity: 0, top: -4 },
             leave: { opacity: 0 },
-            enter: ({ y }) => ({ opacity: 1, transform: `translate(-50%, ${y}rem)` }),
-            update: ({ y }) => ({ opacity: 1, transform: `translate(-50%, ${y}rem)` }),
+            enter: ({ y }) => ({ opacity: 1, top: y }),
+            update: ({ y }) => ({ opacity: 1, top: y }),
             config: { ...config.default, friction: 16 }
         }
     );
@@ -38,12 +41,50 @@ const Notification: React.FC<INotificationProps> = () => {
         // eslint-disable-next-line
     }, [notifications]);
 
+    const notificationCenter = vw * 0.94 * -0.5;
+    const [{ left }, setManualDrag] = useSpring(() => ({ left: notificationCenter }));
+    const bind = useDrag(({ down, movement: [mx], args: [id] }) => {
+        const swipeLimit = vw * 0.65;
+        setManualDrag({
+            left: mx > swipeLimit
+                ? vw
+                : mx < -swipeLimit
+                    ? -vw * 2
+                    : down
+                        ? notificationCenter + mx
+                        : notificationCenter,
+            immediate: down,
+        });
+        if (down) {
+            setDragId(id);
+            if (mx > swipeLimit || mx < -swipeLimit) {
+                dispatchNotification({
+                    type: NotificationActions.DELETE,
+                    payload: notifications.find(({ id: _id }) => _id === id),
+                })
+            }
+        }
+        else {
+            setTimeout(() => setDragId(null), 500);
+        }
+    });
+
     return (
         <>
             {notificationAnimations.map(({ item: notification, props }) => {
-                const { opacity, transform } = props;
+                const { opacity, top } = props;
                 return (
-                    <ANotificationContainer key={notification.id} type={notification.type} style={{ transform, opacity }}>
+                    <ANotificationContainer
+                        {...bind(notification.id)}
+                        key={notification.id}
+                        type={notification.type}
+                        style={{
+                            opacity,
+                            transform: dragId === notification.id
+                                ? interpolate([top as any, left as any], (y, x) => `translate(${x}px, ${y}rem)`)
+                                : top?.interpolate(y => `translate(-50%, ${y}rem)`),
+                        }}
+                    >
                         <AIconContainer type={notification.type}>
                             <FontAwesomeIcon
                                 icon={

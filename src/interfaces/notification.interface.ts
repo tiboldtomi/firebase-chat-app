@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NotificationType } from '../enums';
-import { default as IAction } from './action.interface';
+import { IAction } from './action.interface';
 import { NotificationActions } from '../stores/notification/notification.actions';
 
 export interface INotification {

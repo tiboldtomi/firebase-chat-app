@@ -1,6 +1,4 @@
-interface IAction<T, P> {
+export interface IAction<T, P> {
     type: T;
     payload: P;
 }
-
-export default IAction;
