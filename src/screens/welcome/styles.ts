@@ -37,12 +37,12 @@ const _H1 = styled.h1`
     font-size: 3.5rem;
     color: ${theme.defaultFontColor};
     text-align: center;
-        letter-spacing: 2px;
-        margin-bottom: 2.5vh;
+    letter-spacing: 2px;
+    margin-bottom: 2.5vh;
 
-        @media (max-width: 700px) {
-            font-size: 2.5rem;
-        }
+    @media (max-width: 700px) {
+        font-size: 2.5rem;
+    }
 `;
 
 const _TitleContainer = styled.div`

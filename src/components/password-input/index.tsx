@@ -14,16 +14,10 @@ const PasswordInput: React.FC<IPasswordInput & React.InputHTMLAttributes<HTMLInp
     return (
         <PasswordInputContainer style={{ ...style }}>
             <EyeIconContainer htmlFor={rest.name} onClick={() => setShowPW(!showPW)}>
-                {!showPW
-                    ? <FontAwesomeIcon
-                        icon={faEye}
-                        style={{ width: '1.5rem', height: '1.5rem' }}
-                    />
-                    : <FontAwesomeIcon
-                        icon={faEyeSlash}
-                        style={{ width: '1.5rem', height: '1.5rem' }}
-                    />
-                }
+                <FontAwesomeIcon
+                    icon={!showPW ? faEye : faEyeSlash}
+                    style={{ width: '1.5rem', height: '1.5rem' }}
+                />
             </EyeIconContainer>
             <Input id={rest.name} type={showPW ? 'text' : 'password'} {...rest} />
         </PasswordInputContainer>

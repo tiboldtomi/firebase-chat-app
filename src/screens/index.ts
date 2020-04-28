@@ -1,11 +1,5 @@
-import Home from './home';
-import Login from './login';
-import Welcome from './welcome';
-import Register from './register';
-
-export {
-    Home,
-    Login,
-    Welcome,
-    Register,
-};
+export { default as Home } from './home';
+export { default as Login } from './login';
+export { default as Welcome } from './welcome';
+export { default as Profile } from './profile';
+export { default as Register } from './register';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useFirebase } from '../../utils';
 import { HashRouter, Switch } from 'react-router-dom';
-import { Login, Home, Register, Welcome } from '../../screens';
+import { Login, Home, Register, Welcome, Profile } from '../../screens';
 import { AuthorizedRoute, UnauthorizedRoute, Notification, LoaderBanner } from '../';
 import { AppContainer, BottomCircle, InnerCircle, TopCircle, ScreensContainer } from './styles';
 import { NotificationStoreProvider, LoaderBannerStoreProvider, AuthStoreProvider } from '../../stores';
@@ -37,6 +37,7 @@ const App: React.FC<IAppProps> = () => {
                                 ? <HashRouter basename="/">
                                     <Switch>
                                         <AuthorizedRoute exact={true} path={'/home'} screen={<Home />} />
+                                        <AuthorizedRoute exact={true} path={'/profile'} screen={<Profile />} />
                                         <UnauthorizedRoute exact={true} path={'/'} screen={<Welcome />} />
                                         <UnauthorizedRoute exact={true} path={'/login'} screen={<Login />} />
                                         <UnauthorizedRoute exact={true} path={'/register'} screen={<Register />} />

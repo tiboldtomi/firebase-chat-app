@@ -14,7 +14,7 @@ const UnauthorizedRoute: React.FC<IUnauthorizedRouteProps & RouteProps> = ({ scr
             {...rest}
             render={
                 () => !!currentUser
-                    ? <Redirect to={'/home'} />
+                    ? <Redirect to={'/profile'} />
                     : screen
             }
         />

@@ -2,7 +2,7 @@ const theme = {
     vw: document.documentElement.clientWidth,
     vh: document.documentElement.clientHeight,
 
-    baseHeight: '3rem',   
+    baseHeight: '3rem',
 
     fontSize: '16px',
     defaultFontColor: '#fff',
@@ -27,6 +27,8 @@ const theme = {
     successBackgroundColor: '#d4edda',
     dangerBackgroundColor: '#f8d7da',
     warningBackgroundColor: '#fff3cd',
+
+    goldColor: '#f7b124',
 };
 
 export default theme;
